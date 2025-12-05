@@ -12,8 +12,8 @@ import {
 import {
   Icon28UserCircleOutline,
   Icon28SettingsOutline,
-  Icon28NotificationOutline,
-  Icon28ShieldOutline
+  Icon28Notifications,
+  Icon28LockOutline
 } from '@vkontakte/icons';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -61,13 +61,13 @@ export const ProfilePanel: FC<ProfilePanelProps> = ({ id }) => {
           Фильтры поиска
         </Cell>
         <Cell
-          before={<Icon28NotificationOutline />}
+          before={<Icon28Notifications />}
           after={<Switch />}
         >
           Уведомления
         </Cell>
         <Cell
-          before={<Icon28ShieldOutline />}
+          before={<Icon28LockOutline />}
         >
           Конфиденциальность
         </Cell>

@@ -12,7 +12,7 @@ import {
   Spacing,
   NavIdProps
 } from '@vkontakte/vkui';
-import { Icon28HeartOutline, Icon28CancelOutline } from '@vkontakte/icons';
+import { Icon28LikeOutline, Icon28CancelCircleOutline } from '@vkontakte/icons';
 
 export interface FeedPanelProps extends NavIdProps {}
 
@@ -46,14 +46,14 @@ export const FeedPanel: FC<FeedPanelProps> = ({ id }) => {
                 <Button
                   size="l"
                   mode="secondary"
-                  before={<Icon28CancelOutline />}
+                  before={<Icon28CancelCircleOutline />}
                 >
                   Нет
                 </Button>
                 <Button
                   size="l"
                   mode="primary"
-                  before={<Icon28HeartOutline />}
+                  before={<Icon28LikeOutline />}
                 >
                   Да
                 </Button>
