@@ -1,5 +1,18 @@
 import { useState, useEffect } from 'react';
-import { View, SplitLayout, SplitCol, ScreenSpinner } from '@vkontakte/vkui';
+import {
+  View,
+  SplitLayout,
+  SplitCol,
+  ScreenSpinner,
+  Tabbar,
+  TabbarItem
+} from '@vkontakte/vkui';
+import {
+  Icon28FavoriteOutline,
+  Icon28MessageOutline,
+  Icon28UserCircleOutline,
+  Icon28Fire
+} from '@vkontakte/icons';
 import { useActiveVkuiLocation, useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
 import { DEFAULT_VIEW_PANELS } from './routes';
 import { useAuth } from './contexts/AuthContext';
@@ -26,6 +39,10 @@ export const App = () => {
     }
   }, [isLoading, isAuthenticated, profile, routeNavigator]);
 
+  const handleTabChange = (panel: string) => {
+    routeNavigator.push(`/${panel}`);
+  };
+
   return (
     <SplitLayout popout={popout}>
       <SplitCol>
@@ -36,6 +53,36 @@ export const App = () => {
           <ProfilePanel id={DEFAULT_VIEW_PANELS.PROFILE} />
           <OnboardingPanel id={DEFAULT_VIEW_PANELS.ONBOARDING} />
         </View>
+        <Tabbar>
+          <TabbarItem
+            selected={activePanel === DEFAULT_VIEW_PANELS.FEED}
+            onClick={() => handleTabChange(DEFAULT_VIEW_PANELS.FEED)}
+            text="Знакомства"
+          >
+            <Icon28Fire />
+          </TabbarItem>
+          <TabbarItem
+            selected={activePanel === DEFAULT_VIEW_PANELS.LIKES}
+            onClick={() => handleTabChange(DEFAULT_VIEW_PANELS.LIKES)}
+            text="Лайки"
+          >
+            <Icon28FavoriteOutline />
+          </TabbarItem>
+          <TabbarItem
+            selected={activePanel === DEFAULT_VIEW_PANELS.MESSAGES}
+            onClick={() => handleTabChange(DEFAULT_VIEW_PANELS.MESSAGES)}
+            text="Сообщения"
+          >
+            <Icon28MessageOutline />
+          </TabbarItem>
+          <TabbarItem
+            selected={activePanel === DEFAULT_VIEW_PANELS.PROFILE}
+            onClick={() => handleTabChange(DEFAULT_VIEW_PANELS.PROFILE)}
+            text="Профиль"
+          >
+            <Icon28UserCircleOutline />
+          </TabbarItem>
+        </Tabbar>
       </SplitCol>
     </SplitLayout>
   );

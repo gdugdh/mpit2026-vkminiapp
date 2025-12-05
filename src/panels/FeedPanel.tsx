@@ -1,21 +1,67 @@
 import { FC } from 'react';
-import { Panel, NavIdProps } from '@vkontakte/vkui';
-import { FeedScreen } from '../components/feed-screen';
-import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
-import { DEFAULT_VIEW_PANELS } from '../routes';
+import {
+  Panel,
+  PanelHeader,
+  Group,
+  CardGrid,
+  Card,
+  Div,
+  Title,
+  Text,
+  Button,
+  Spacing,
+  NavIdProps
+} from '@vkontakte/vkui';
+import { Icon28HeartOutline, Icon28CancelOutline } from '@vkontakte/icons';
 
 export interface FeedPanelProps extends NavIdProps {}
 
 export const FeedPanel: FC<FeedPanelProps> = ({ id }) => {
-  const routeNavigator = useRouteNavigator();
-
-  const handleOpenProfile = () => {
-    routeNavigator.push(`/${DEFAULT_VIEW_PANELS.PROFILE}`);
-  };
-
   return (
     <Panel id={id}>
-      <FeedScreen onOpenProfile={handleOpenProfile} />
+      <PanelHeader>Знакомства</PanelHeader>
+      <Group>
+        <CardGrid size="l">
+          <Card>
+            <Div>
+              <div style={{
+                width: '100%',
+                height: 400,
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                borderRadius: 12,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                fontSize: 48
+              }}>
+                👤
+              </div>
+              <Spacing size={16} />
+              <Title level="2" weight="2">Анкеты закончились</Title>
+              <Spacing size={8} />
+              <Text>Попробуйте изменить фильтры или загляните позже</Text>
+              <Spacing size={16} />
+              <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
+                <Button
+                  size="l"
+                  mode="secondary"
+                  before={<Icon28CancelOutline />}
+                >
+                  Нет
+                </Button>
+                <Button
+                  size="l"
+                  mode="primary"
+                  before={<Icon28HeartOutline />}
+                >
+                  Да
+                </Button>
+              </div>
+            </Div>
+          </Card>
+        </CardGrid>
+      </Group>
     </Panel>
   );
 };
