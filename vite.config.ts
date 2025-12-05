@@ -30,9 +30,17 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+    extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'],
   },
 
   build: {
     outDir: 'build',
+    rollupOptions: {
+      external: [],
+    },
+  },
+
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
   },
 });

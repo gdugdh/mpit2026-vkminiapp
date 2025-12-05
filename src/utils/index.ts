@@ -1,11 +1,15 @@
-import { Adaptivity } from '@vkontakte/vk-bridge';
 import { AdaptivityProps, ViewHeight, ViewWidth } from '@vkontakte/vkui';
+
+interface VKBridgeAdaptivity {
+  viewportWidth: number;
+  viewportHeight: number;
+}
 
 export function transformVKBridgeAdaptivity({
   viewportWidth,
   viewportHeight,
-}: Adaptivity): AdaptivityProps {
-  let viewWidth: ViewWidth;
+}: VKBridgeAdaptivity): AdaptivityProps {
+  let viewWidth: typeof ViewWidth[keyof typeof ViewWidth];
   if (viewportWidth >= 1280) {
     viewWidth = ViewWidth.DESKTOP;
   } else if (viewportWidth >= 768) {
@@ -14,7 +18,7 @@ export function transformVKBridgeAdaptivity({
     viewWidth = ViewWidth.MOBILE;
   }
 
-  let viewHeight: ViewHeight;
+  let viewHeight: typeof ViewHeight[keyof typeof ViewHeight];
   if (viewportHeight >= 720) {
     viewHeight = ViewHeight.MEDIUM;
   } else {
@@ -26,6 +30,5 @@ export function transformVKBridgeAdaptivity({
     viewHeight,
     sizeX: viewWidth >= ViewWidth.TABLET ? 'regular' : 'compact',
     sizeY: viewHeight >= ViewHeight.MEDIUM ? 'regular' : 'compact',
-    hasMouse: viewportWidth >= 1280,
   };
 }
